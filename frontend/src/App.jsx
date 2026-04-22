@@ -14,13 +14,16 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   return children;
 };
 
+import { useNavigate } from 'react-router-dom';
+
 const DashboardContainer = ({ children }) => {
   const name = localStorage.getItem('userName');
   const role = localStorage.getItem('userRole');
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = '/login';
+    navigate('/login', { replace: true });
   };
 
   return (
